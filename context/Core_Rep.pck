@@ -1,16 +1,15 @@
-
-  CREATE OR REPLACE PACKAGE CORE_REP is
+create or replace package Core_Rep is
 
 -- Author  : Mardonbek Sobirov
 -- Created : 03.03.2026 9:09:25
 -- Purpose : For create session to REP_ENV
    
-  V_TOTAL  CONSTANT INTEGER := 1000000;
-  
+   
   Date_Begin Varchar2(20); 
   Date_End   Varchar2(20); 
   Brcd       Varchar2(4); 
    
+
   Procedure Set_Session(i_key varchar2, i_value varchar2);
   
   Procedure Clear_Context;
@@ -29,14 +28,14 @@
   Function Get_Set_Text (i_value clob) return clob;
   
 end Core_Rep;
-
-CREATE OR REPLACE PACKAGE BODY CORE_REP is
+/
+create or replace package body Core_Rep is
 
   --Creating session
 Procedure Set_Session(i_key varchar2, i_value varchar2) is
   begin
   
-    dbms_session.set_context(namespace => 'REP_ENV',
+    dbms_session.set_context(namespace => 'Rep_Env',
                              attribute => i_key,
                              value     => i_value);
 
@@ -47,7 +46,7 @@ End Set_Session;
 Procedure Clear_Context is
   
 Begin
-  Dbms_Session.clear_context(namespace => 'REP_ENV');
+  Dbms_Session.clear_context(namespace => 'Rep_Env');
 End Clear_Context;
 --------------------=============================------------------------------ 
 
@@ -99,21 +98,6 @@ Begin
     return sysdate;
 End Get_Time;
 --------------------=============================------------------------------
-Procedure Set_Text(i_value clob)
-  is
-BEGIN
-  
-  Text := i_value;
- 
-End Set_Text;
---------------------=============================------------------------------
-Function Get_Text
-  return clob
-  is
-Begin
-    return Text;
-End Get_Text;
---------------------=============================------------------------------
 Function Get_Set_Text (i_value clob)
   return clob
   is
@@ -125,3 +109,4 @@ End Get_Set_Text;
 
 
 End Core_Rep;
+/

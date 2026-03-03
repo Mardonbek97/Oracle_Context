@@ -24,7 +24,6 @@ create or replace package Core_Rep is
   Function Get_Brcd return Varchar2;
   
   Function Get_Time return date;
-  
   Function Get_Set_Text (i_value clob) return clob;
   
 end Core_Rep;

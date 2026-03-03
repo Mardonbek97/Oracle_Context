@@ -34,7 +34,7 @@ create or replace package body Core_Rep is
 Procedure Set_Session(i_key varchar2, i_value varchar2) is
   begin
   
-    dbms_session.set_context(namespace => 'Rep_Env',
+    dbms_session.set_context(namespace => 'REP_ENV',
                              attribute => i_key,
                              value     => i_value);
 
